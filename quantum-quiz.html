@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>Quantum Mind Reset - Test Elite</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0D1B40;font-family:'Montserrat',sans-serif;color:#fff;min-height:100vh}
+#app{display:flex;flex-direction:column;align-items:center;padding:0 0 70px}
+.fade-in{animation:fadeIn 0.42s ease forwards}
+@keyframes fadeIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.pulse{animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:0.55}50%{opacity:1}}
+.gold{color:#B8952A}
+.navy{color:#0D1B40}
+.serif{font-family:'Cormorant Garamond',serif}
+input{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.16);border-radius:6px;padding:13px 15px;color:#fff;font-family:'Montserrat',sans-serif;font-size:14px;outline:none;margin-bottom:10px;display:block}
+input:focus{border-color:#B8952A}
+input::placeholder{color:rgba(255,255,255,0.3)}
+.btn-gold{background:#B8952A;color:#0D1B40;border:none;border-radius:4px;padding:15px 36px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;cursor:pointer;width:100%;display:block;text-align:center;text-decoration:none;transition:all 0.2s}
+.btn-gold:hover{background:#d4aa30}
+.btn-outline{background:transparent;color:#B8952A;border:1px solid #B8952A;border-radius:4px;padding:12px 30px;font-family:'Montserrat',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.18s}
+.btn-outline:disabled{opacity:0.28;cursor:default}
+.btn-lang{background:transparent;border:1px solid rgba(255,255,255,0.2);border-radius:3px;color:rgba(255,255,255,0.5);font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.08em;padding:5px 10px;cursor:pointer;transition:all 0.18s}
+.btn-lang.on{border-color:#B8952A;color:#B8952A}
+.choice-btn{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.13);border-radius:8px;padding:13px 16px;color:#fff;font-family:'Montserrat',sans-serif;font-size:13px;text-align:left;cursor:pointer;transition:all 0.18s;line-height:1.5;display:block;margin-bottom:8px}
+.choice-btn:hover,.choice-btn.sel{background:rgba(184,149,42,0.2);border-color:#B8952A}
+.slider-wrap{width:100%;margin-bottom:36px}
+.slider-num{text-align:center;margin-bottom:16px;font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:#B8952A;line-height:1}
+input[type=range]{-webkit-appearance:none;width:100%;height:4px;border-radius:2px;outline:none;cursor:pointer;margin:0}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#B8952A;border:3px solid #fff;box-shadow:0 2px 12px rgba(184,149,42,0.5);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#B8952A;border:3px solid #fff;cursor:pointer}
+.divider{width:100%;height:1px;background:linear-gradient(to right,transparent,#B8952A,transparent);margin:22px 0}
+.t-card{background:rgba(255,255,255,0.04);border:1px solid rgba(184,149,42,0.18);border-radius:10px;padding:22px 20px;margin-bottom:14px}
+.progress-bar{height:2px;background:rgba(255,255,255,0.08);border-radius:1px;margin-bottom:26px}
+.progress-fill{height:100%;background:#B8952A;border-radius:1px;transition:width 0.35s ease}
+.hidden{display:none}
+.section{max-width:560px;width:100%;padding:36px 24px 0;position:relative}
+.header{width:100%;max-width:580px;padding:20px 24px 0;display:flex;justify-content:space-between;align-items:center}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="header">
+    <div class="serif gold" style="font-size:13px;letter-spacing:0.16em;text-transform:uppercase">Quantum Hypnosis</div>
+    <div style="display:flex;gap:6px">
+      <button class="btn-lang on" id="btn-it" onclick="setLang('it')">IT</button>
+      <button class="btn-lang" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+  <div id="screen-intro" class="section fade-in" style="max-width:500px;text-align:center;padding-top:44px">
+    <div style="width:100%;border-radius:10px;margin-bottom:28px;background:rgba(255,255,255,0.03);border:1px solid rgba(184,149,42,0.2);padding:28px 24px">
+      <div class="serif gold" style="font-size:15px;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:6px">Marina Ferrara</div>
+      <div id="intro-role" style="font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:0.1em;margin-bottom:10px">Fondatrice - Quantum Hypnosis</div>
+      <div style="font-size:11px;color:rgba(184,149,42,0.55);letter-spacing:0.07em" id="intro-sub">25+ anni - Leader internazionali - Atleti d'elite</div>
+    </div>
+    <div style="color:#B8952A;font-size:13px;opacity:0.4;letter-spacing:10px;margin-bottom:16px">. . .</div>
+    <h1 class="serif" style="font-size:36px;font-weight:300;letter-spacing:0.03em;line-height:1.15;margin-bottom:8px">Quantum Mind Reset</h1>
+    <div class="serif gold" id="intro-subtitle" style="font-size:15px;letter-spacing:0.13em;text-transform:uppercase;font-style:italic;margin-bottom:20px">Test di Autovalutazione Elite</div>
+    <div style="width:30px;height:1px;background:#B8952A;margin:0 auto 20px"></div>
+    <p id="intro-desc" style="font-size:14px;line-height:1.75;color:rgba(255,255,255,0.68);font-weight:300;margin-bottom:8px">Scopri esattamente dove si trova la tua mente, le tue relazioni e il tuo potenziale in questo momento - e cosa ti impedisce di operare al livello che ti appartiene.</p>
+    <p id="intro-exc" style="font-size:12px;color:rgba(184,149,42,0.65);letter-spacing:0.04em;margin-bottom:28px;font-style:italic">Questo test non e' per tutti. E' per chi e' pronto a fare sul serio.</p>
+    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(184,149,42,0.14);border-radius:8px;padding:14px 20px;margin-bottom:26px;display:flex;justify-content:space-around;text-align:center">
+      <div><div class="serif gold" style="font-size:22px;font-weight:600">1000+</div><div id="stat1" style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.06em;text-transform:uppercase;margin-top:2px">leader trasformati</div></div>
+      <div><div class="serif gold" style="font-size:22px;font-weight:600">25+</div><div id="stat2" style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.06em;text-transform:uppercase;margin-top:2px">anni di ricerca</div></div>
+      <div><div class="serif gold" style="font-size:22px;font-weight:600">4</div><div id="stat3" style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.06em;text-transform:uppercase;margin-top:2px">continenti</div></div>
+    </div>
+    <button class="btn-gold" id="btn-start" onclick="startQuiz()" style="width:auto;padding:15px 40px">INIZIA IL TEST</button>
+    <div id="intro-duration" style="margin-top:12px;font-size:11px;color:rgba(255,255,255,0.26);letter-spacing:0.07em">4 minuti - 10 domande - Diagnosi AI personalizzata</div>
+    <div style="margin-top:36px;font-size:10px;color:rgba(255,255,255,0.13);letter-spacing:0.1em;text-transform:uppercase">QUANTUM HYPNOSIS - MARINA FERRARA - ELITE HIGH PERFORMANCE PROTOCOL FOR LEADERS</div>
+  </div>
+
+  <div id="screen-quiz" class="section hidden fade-in" style="max-width:540px">
+    <div style="margin-bottom:4px">
+      <div style="display:flex;justify-content:space-between;margin-bottom:7px;font-size:10.5px;color:rgba(255,255,255,0.3);letter-spacing:0.08em">
+        <span id="q-counter">DOMANDA 1 / 10</span><span id="q-pct">10%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:10%"></div></div>
+    </div>
+    <div class="serif" id="q-text" style="font-size:20px;line-height:1.55;font-weight:400;margin-bottom:28px;min-height:56px"></div>
+    <div id="q-slider" class="slider-wrap hidden">
+      <div class="slider-num"><span id="slider-val">5</span><span style="color:rgba(255,255,255,0.25);font-size:18px;margin-left:2px">/10</span></div>
+      <input type="range" min="1" max="10" value="5" id="slider-input" oninput="updateSlider(this.value)"/>
+      <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:10.5px;color:rgba(255,255,255,0.3);letter-spacing:0.05em">
+        <span id="slider-low"></span><span id="slider-high"></span>
+      </div>
+    </div>
+    <div id="q-choices"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+      <button class="btn-outline" id="btn-back" onclick="goBack()" style="border:none;color:rgba(255,255,255,0.2);background:none;font-size:12px;padding:0;letter-spacing:0.05em">Indietro</button>
+      <button class="btn-outline" id="btn-next" onclick="goNext()">Avanti</button>
+    </div>
+  </div>
+
+  <div id="screen-lead" class="hidden fade-in" style="max-width:480px;width:100%;padding:40px 24px 0;text-align:center">
+    <div class="serif gold" style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:10px" id="lead-step">Ultimo passo</div>
+    <h2 class="serif" style="font-size:26px;font-weight:300;margin-bottom:12px;line-height:1.3" id="lead-title">Ricevi la tua diagnosi personalizzata</h2>
+    <p id="lead-desc" style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:24px;line-height:1.65;font-weight:300">Inserisci i tuoi dati per ricevere il profilo completo via email. Potrai poi candidarti per la Exclusive Clarity Call.</p>
+    <input id="f-name" placeholder="Nome e Cognome"/>
+    <input id="f-email" type="email" placeholder="Email"/>
+    <input id="f-phone" type="tel" placeholder="WhatsApp (es. +39 333 1234567)"/>
+    <input id="f-age" placeholder="Eta' (es. 42)"/>
+    <input id="f-profession" placeholder="Professione / Ruolo"/>
+    <div id="lead-err" style="color:#ff7b7b;font-size:12.5px;margin-bottom:12px;display:none"></div>
+    <button class="btn-gold" onclick="submitLead()" id="lead-btn">SCOPRI IL TUO PROFILO</button>
+    <p id="lead-privacy" style="font-size:11px;color:rgba(255,255,255,0.22);margin-top:14px">Dati protetti. Nessuno spam.</p>
+  </div>
+
+  <div id="screen-loading" class="hidden fade-in" style="max-width:360px;width:100%;padding:80px 24px 0;text-align:center">
+    <div class="pulse serif gold" style="font-size:48px;margin-bottom:28px">&#9670;</div>
+    <h2 class="serif" id="loading-title" style="font-size:24px;font-weight:300;letter-spacing:0.04em;margin-bottom:12px">Analisi in corso...</h2>
+    <p id="loading-desc" style="font-size:12.5px;color:rgba(255,255,255,0.35);letter-spacing:0.04em;line-height:1.7">Quantum Hypnosis sta elaborando il tuo profilo mentale</p>
+  </div>
+
+  <div id="screen-result" class="section hidden fade-in"></div>
+</div>
+
+<script>
+var lang = 'it';
+var current = 0;
+var answers = {};
+var sliderValue = 5;
+var choiceValue = null;
+var leadData = null;
+var resultData = null;
+
+var PROFILES = {
+  it: {
+    burnout: { name: "Burnout - Il Prezzo del Successo", emoji: "🔥", description: "Hai costruito molto. Hai dato tutto al business, agli obiettivi, agli altri.\n\nE il risultato e' che ora sei stanco/a di una stanchezza che il riposo non toglie.\n\nLa notte non e' un rifugio: o non riesci ad addormentarti, o ti svegli alle tre e la testa riparte immediatamente, gia' al lavoro. Di giorno la mente non si ferma mai. Anche in vacanza, anche nei momenti che dovrebbero essere tuoi, senti di star rubando tempo a cio' che dovresti fare.\n\nIl corpo manda segnali che continui a ignorare. Quella energia che ti ha portato fin qui sembra essersi consumata.\n\nNon e' debolezza. E' il prezzo che nessuno ti ha detto che avresti pagato. E piu' vai avanti cosi', piu' il costo aumenta." },
+    cristallo: { name: "Il Soffitto di Cristallo", emoji: "💎", description: "Vedi dove vuoi arrivare. Lo senti vicino. Hai le capacita', hai la visione.\n\nEppure c'e' qualcosa che ti ferma, spesso proprio all'ultimo momento. Un passo avanti, due indietro. Risultati che rimangono sempre un gradino sotto quello che sai di poter ottenere.\n\nIl soffitto e' di cristallo: vedi attraverso, vedi il tuo potenziale, sei consapevole di quello che potresti raggiungere, puoi quasi toccarlo. Ma qualcosa continua a fermarti.\n\nNon e' sfortuna. Non e' mancanza di impegno. E' uno schema che lavora sotto la superficie, invisibile ma potente." },
+    silenzio: { name: "Il Silenzio Dentro", emoji: "🌊", description: "Fuori tutto sembra funzionare. Ma dentro, e nelle relazioni che contano, c'e' un silenzio che pesa.\n\nForse e' mancanza di tempo e di qualita' per te stesso/a: non ti nutri, non ti ascolti, sei sempre in corsa. Forse le relazioni ci sono ma non vengono coltivate, la testa e' sempre altrove, mai abbastanza presente.\n\nO forse la solitudine e' piu' profonda: tutto ruota intorno al lavoro e alla performance, e gli altri si sono allontanati, o sei tu che ti sei allontanato/a senza accorgertene.\n\nIn tutti i casi, qualcosa di essenziale sta aspettando di essere ritrovato. E lo senti." },
+    chiave: { name: "La Chiave Mancante", emoji: "🗝️", description: "Hai gia' investito su te stesso/a. Hai lavorato, studiato, fatto percorsi. Hai ottenuto risultati, non sei qui per caso.\n\nMa c'e' ancora qualcosa che non si e' sbloccato completamente. Qualcosa che continua a sfuggirti nonostante tutto quello che hai fatto e tutto quello che sai.\n\nLa frustrazione non e' non aver provato, e' aver provato tanto, con impegno e serieta', e sentire che la chiave giusta non l'hai ancora trovata.\n\nNon e' colpa tua. Certi livelli richiedono strumenti diversi. Strumenti che lavorano dove gli altri non arrivano." },
+    bussola: { name: "Senza Bussola", emoji: "🧭", description: "Senti che qualcosa non va, ma non riesci a mettere il dito esattamente su cosa.\n\nManca chiarezza. Manca direzione. Forse hai anche i risultati, forse le cose dall'esterno sembrano a posto, ma dentro c'e' una nebbia che non si dirada.\n\nOgni decisione pesa piu' del dovuto. Ogni passo sembra fatto nel buio o contro corrente. Ti chiedi se stai andando nella direzione giusta, se quello che stai costruendo e' davvero quello che vuoi.\n\nNon e' confusione superficiale. E' il segnale che qualcosa di profondo chiede di essere ascoltato e riallineato." }
+  },
+  en: {
+    burnout: { name: "Burnout - The Price of Success", emoji: "🔥", description: "You've built a lot. You've given everything to your business, your goals, others.\n\nAnd the result is that you're now tired with a tiredness that rest doesn't fix.\n\nNight is no refuge: either you can't fall asleep, or you wake at three and your mind immediately starts again, already working. During the day your mind never stops. Even on vacation, even in moments that should be yours, you feel like you're stealing time from what you should be doing.\n\nYour body sends signals you keep ignoring. That energy that brought you this far seems to have burned out.\n\nThis isn't weakness. It's the price nobody told you you'd pay." },
+    cristallo: { name: "The Glass Ceiling", emoji: "💎", description: "You can see where you want to go. You feel it close. You have the skills, the vision.\n\nYet something stops you, often right at the last moment. One step forward, two steps back. Results that always stay one level below what you know you're capable of.\n\nThe ceiling is made of glass: you see through it, you see your potential, you're aware of what you could achieve, you can almost touch it. But something keeps stopping you.\n\nIt's not bad luck. It's not lack of effort. It's a pattern working beneath the surface, invisible but powerful." },
+    silenzio: { name: "The Silence Within", emoji: "🌊", description: "On the outside, everything seems to work. But inside, and in the relationships that matter, there's a silence that weighs heavily.\n\nMaybe it's a lack of time and quality for yourself: you don't nurture yourself, you're always rushing. Maybe the relationships are there but aren't being nurtured, your mind is always elsewhere.\n\nOr maybe the loneliness runs deeper: everything revolves around work and performance, and others have drifted away, or you have, without noticing.\n\nIn any case, something essential is waiting to be rediscovered. And you feel it." },
+    chiave: { name: "The Missing Key", emoji: "🗝️", description: "You've already invested in yourself. You've worked, studied, done programs. You've gotten results, you're not here by chance.\n\nBut there's still something that hasn't fully unlocked. Something that keeps eluding you despite everything you've done and everything you know.\n\nThe frustration isn't not having tried, it's having tried so much, with commitment and seriousness, and feeling that the right key still hasn't been found.\n\nIt's not your fault. Certain levels require different tools." },
+    bussola: { name: "Without a Compass", emoji: "🧭", description: "You feel something is off, but you can't quite put your finger on what.\n\nClarity is missing. Direction is missing. Maybe you even have results, maybe things look fine from the outside, but inside there's a fog that won't lift.\n\nEvery decision weighs more than it should. Every step feels taken in the dark or against the current.\n\nThis isn't surface confusion. It's a signal that something deep is asking to be heard and realigned." }
+  }
+};
+
+var TESTIMONIALS = {
+  it: [
+    { headline: "Fatturato X4. Debiti estinti. Affido paritetico dei figli.", quote: "Stavo attraversando uno dei periodi piu' bui della mia vita. La separazione, i debiti, una stanchezza cronica. Era come se fossi intrappolato in un loop di fallimenti. Con il Reset Quantico di Marina abbiamo spezzato quei circuiti. La realta' ha obbedito al nuovo ordine che avevo messo dentro di me.", name: "Francesco P.", role: "Sales & Marketing Specialist" },
+    { headline: "15 giorni dopo la Clarity Call: incarico per un colosso della moda.", quote: "Ero bloccato. Avevo tutto quello che serviva ma qualcosa rendeva invisibile il mio valore. Durante la Clarity Call qualcosa si e' sbloccato immediatamente. Quindici giorni dopo mi arriva l'incarico come Project Manager per un colosso internazionale. Oggi guido un intero team con una fierezza che non avevo mai provato prima.", name: "Giancarlo B.", role: "Chief Project Manager, Edilizia di Lusso" },
+    { headline: "In sole 4 sessioni, a meta' percorso, chiarezza totale e una situazione legale risolta.", quote: "Ero paralizzata su tutto: la direzione professionale, la relazione, le scelte di ogni giorno. C'era anche una situazione legale irrisolta da anni. In sole quattro sessioni tutto si e' spostato. Ho ritrovato la chiarezza e quella questione legale si e' risolta quasi magicamente.", name: "Roberta R.", role: "Imprenditrice Immobiliare" }
+  ],
+  en: [
+    { headline: "Revenue X4. Debts cleared. Joint custody of his children.", quote: "I was going through one of the darkest periods of my life. The separation, the debts, chronic exhaustion. With Marina's Quantum Reset we broke those circuits. Reality obeyed the new order I had put inside myself.", name: "Francesco P.", role: "Sales & Marketing Specialist" },
+    { headline: "15 days after the Clarity Call: assignment with a global fashion powerhouse.", quote: "I was stuck. I had everything it took but something made my value invisible. During the Clarity Call something unlocked immediately. Today I lead an entire team with a pride I had never felt before.", name: "Giancarlo B.", role: "Chief Project Manager, Luxury Construction" },
+    { headline: "In just 4 sessions, halfway through: total clarity and a legal situation resolved.", quote: "I was paralysed on everything. There was also a legal situation unresolved for years. In just four sessions everything shifted. I found clarity again and that legal matter resolved itself almost magically.", name: "Roberta R.", role: "Real Estate Entrepreneur" }
+  ]
+};
+
+var QUESTIONS = [
+  { id:1, type:"choice", key:"area", it:"In quale area della tua vita senti il maggiore blocco in questo momento?", en:"In which area of your life do you feel the greatest block right now?", options:[{it:"Performance & Business - non sto raggiungendo i risultati che so di poter ottenere",en:"Performance & Business - not reaching the results I know I'm capable of"},{it:"Relazioni - schemi ricorrenti con partner, figli o collaboratori",en:"Relationships - recurring patterns with partner, children or colleagues"},{it:"Stato mentale - stress, burnout, mente sempre in corsa",en:"Mental state - stress, burnout, mind always racing"},{it:"Identita' & Direzione - non so piu' chi sono o dove voglio andare",en:"Identity & Direction - lost sense of who I am or where I'm going"}] },
+  { id:2, type:"slider", key:"performance", it:"Quanto sei soddisfatto/a delle tue performance attuali (business + vita personale)?", en:"How satisfied are you with your current performance (business + personal life)?", labelLow:{it:"Per niente",en:"Not at all"}, labelHigh:{it:"Completamente",en:"Completely"} },
+  { id:3, type:"choice", key:"obstacle", it:"Qual e' il pattern che si ripete nella tua vita e non riesci a spezzare?", en:"What is the recurring pattern in your life that you cannot break?", options:[{it:"Autosabotaggio - arrivo vicino al successo e poi mi fermo",en:"Self-sabotage - I get close to success then stop myself"},{it:"Relazioni tossiche o distanza emotiva ricorrente",en:"Toxic relationships or recurring emotional distance"},{it:"Stress cronico che drena energia e lucidita'",en:"Chronic stress draining energy and clarity"},{it:"Decisioni bloccate - paura di sbagliare che paralizza",en:"Blocked decisions - fear of making mistakes paralyses me"}] },
+  { id:4, type:"slider", key:"stress", it:"Quanto stress stai portando in questo momento?", en:"How much stress are you carrying right now?", labelLow:{it:"Minimo",en:"Minimal"}, labelHigh:{it:"Insostenibile",en:"Unsustainable"} },
+  { id:5, type:"choice", key:"relationships", it:"Come stai nelle tue relazioni piu' importanti (partner, figli, team)?", en:"How are you in your most important relationships (partner, children, team)?", options:[{it:"Presente e connesso/a - mi nutrono",en:"Present and connected - they nurture me"},{it:"Distante - il lavoro o la testa assorbe tutto",en:"Distant - work or my mind absorbs everything"},{it:"Conflitto ricorrente - gli stessi problemi si ripresentano",en:"Recurring conflict - same problems keep coming back"},{it:"Solo/a anche quando sono circondato/a da altri",en:"Lonely even when surrounded by people"}] },
+  { id:6, type:"slider", key:"underperformance", it:"Quanto spesso ottieni risultati sotto le tue reali capacita', come se qualcosa ti frenasse all'ultimo momento?", en:"How often do you achieve results below your real capabilities?", labelLow:{it:"Quasi mai",en:"Almost never"}, labelHigh:{it:"Continuamente",en:"Constantly"} },
+  { id:7, type:"slider", key:"subconscious", it:"Quanto senti che credenze limitanti, paure o schemi del passato condizionano ancora le tue scelte oggi?", en:"How much do limiting beliefs, fears or past patterns still condition your choices?", labelLow:{it:"Per niente",en:"Not at all"}, labelHigh:{it:"Moltissimo",en:"Enormously"} },
+  { id:8, type:"choice", key:"experience", it:"Hai gia' lavorato su te stesso/a con un percorso strutturato?", en:"Have you already worked on yourself through a structured program?", options:[{it:"Si', ma senza i risultati sperati",en:"Yes, but without the results I hoped for"},{it:"Si', con buoni risultati - pronto/a al livello successivo",en:"Yes, with good results - ready for the next level"},{it:"No, e' la prima volta che considero qualcosa del genere",en:"No, first time considering this"},{it:"Ho provato molte cose - niente ha funzionato davvero",en:"Tried many things - nothing really worked"}] },
+  { id:9, type:"slider", key:"readiness", it:"Quanto sei disposto/a a investire seriamente per raggiungere la tua versione potenziata?", en:"How willing are you to seriously invest to reach your enhanced version?", labelLow:{it:"Non ancora pronto/a",en:"Not ready yet"}, labelHigh:{it:"Completamente pronto/a",en:"Fully ready"} },
+  { id:10, type:"choice", key:"investment", it:"Se il percorso giusto trasformasse davvero la tua vita - a quale fascia di investimento saresti aperto/a?", en:"If the right program truly transformed your life - which investment range would you be open to?", options:[{it:"EUR 25.000 - 12.000",en:"EUR 25,000 - 12,000"},{it:"EUR 12.000 - 6.000",en:"EUR 12,000 - 6,000"},{it:"EUR 6.000 - 3.000",en:"EUR 6,000 - 3,000"},{it:"Non sono ancora sicuro/a",en:"I'm not sure yet"}] }
+];
+
+var T = {
+  it: { start:"INIZIA IL TEST", next:"Avanti", back:"Indietro", cont:"Continua", question:"DOMANDA", lastStep:"Ultimo passo", leadTitle:"Ricevi la tua diagnosi personalizzata", leadDesc:"Inserisci i tuoi dati per ricevere il profilo completo via email.", leadBtn:"SCOPRI IL TUO PROFILO", privacy:"Dati protetti. Nessuno spam.", loading:"Analisi in corso", loadingDesc:"Quantum Hypnosis sta elaborando il tuo profilo mentale", yourProfile:"Il tuo profilo", days:"In soli 60 giorni.", daysub:"Un tempo che oggi ti sembra impensabile.", t1:"Quantum Deep Reset agisce a livello subconscio e sui livelli energetici piu' sottili. Riscrivendo e ricostruendo, in 60 giorni, una versione di te ripulita da tutto cio' che non ti serve piu'. Potenziata. Pronta.", t2:"Leader internazionali, atleti d'elite, imprenditori lo scelgono da oltre 25 anni — come strumento preciso per potenziare performance, benessere e risultati al massimo livello.", testimLabel:"Alcuni dei nostri risultati", testimSub:"Centinaia di leader, imprenditori e atleti hanno gia' scelto Quantum Hypnosis", quote1:"La realta' esterna si crea dalla realta' interna.", m1:"Non e' una filosofia. E' quello che neuroscienze ed epigenetica confermano da decenni — e quello che i piu' grandi atleti, leader e imprenditori del mondo sanno e applicano da sempre.", m2:"L'ipnosi non e' perdita di controllo. E' il contrario — uno stato di massima lucidita' e consapevolezza, in cui la plasticita' del cervello e' al suo picco. In questo stato focalizzato, il subconscio vive le nuove esperienze come reali. Le registra. Le interiorizza. E inizia a riscrivere le vecchie storie — quelle che hai ereditato, accumulato, vissuto — con nuove emozioni, nuovi vissuti, nuovi schemi.", quote2:"Quando il subconscio cambia, cambia la realta' che crea.", m3:"Quantum Hypnosis lavora esattamente qui. Sul subconscio, sulle memorie ereditate, sui blocchi energetici e vibrazionali che nessun corso, nessun libro, nessuna forza di volonta' riesce a raggiungere.", m4:"Non e' una questione di impegno o di coraggio — hai gia' dimostrato di averne. E' una questione del livello su cui si lavora.", m5:"Chi sceglie questo percorso lo fa perche' ha capito questo. Perche' e' avanti. Perche' chi ottiene davvero di piu' non aspetta — decide.", m6:"Decide che vuole Eccellenza e Chiarezza. Sicurezza e carisma. Una leadership autentica — che rispetta prima di tutto te stesso, i tuoi veri valori, il tuo vero Se'. Un lifestyle che unisce risultati e benessere per te e per chi ti sta intorno.", ctaLabel:"Processo selettivo - Posti limitati", ctaTitle:"Prenota la tua Exclusive Clarity Call gratuita", ctaDesc:"Riservata esclusivamente a chi viene selezionato attraverso questo quiz. Non e' per tutti. Posti limitati. Selezione in corso.", ctaBtn:"PRENOTA ORA - E' GRATUITA", ctaConf:"Riceverai conferma via email con tutti i dettagli.", diag:"La tua diagnosi personalizzata", retry:"Rifai il test" },
+  en: { start:"START THE TEST", next:"Next", back:"Back", cont:"Continue", question:"QUESTION", lastStep:"Last step", leadTitle:"Receive your personalised diagnosis", leadDesc:"Enter your details to receive your full profile by email.", leadBtn:"DISCOVER YOUR PROFILE", privacy:"Protected data. No spam.", loading:"Analyzing", loadingDesc:"Quantum Hypnosis is building your unique mental profile", yourProfile:"Your profile", days:"In just 60 days.", daysub:"A timeframe that today seems unthinkable.", t1:"Quantum Deep Reset acts at the subconscious level and on the subtler energetic levels. Rewriting and rebuilding, in 60 days, a version of you cleansed of everything that no longer serves you. Enhanced. Ready.", t2:"International leaders, elite athletes and entrepreneurs have chosen it for over 25 years — as a precise tool to enhance performance, wellbeing and results at the highest level.", testimLabel:"Some of our results", testimSub:"Hundreds of leaders, entrepreneurs and athletes have already chosen Quantum Hypnosis", quote1:"The outer reality is created from the inner reality.", m1:"This is not a philosophy. It's what neuroscience and epigenetics have confirmed for decades — and what the world's greatest athletes, leaders and entrepreneurs have always known and applied.", m2:"Hypnosis is not loss of control. It's the opposite — a state of maximum lucidity and awareness, where the brain's plasticity is at its peak. In this focused state, the subconscious experiences new realities as real. It registers them. Internalises them. And begins to rewrite the old stories — those inherited, accumulated, lived — with new emotions, new experiences, new patterns.", quote2:"When the subconscious changes, the reality it creates changes.", m3:"Quantum Hypnosis works exactly here. On the subconscious, on inherited memories, on energetic and vibrational blocks that no course, no book, no willpower can reach.", m4:"It's not a question of effort or courage — you've already proven you have both. It's a question of the level at which you work.", m5:"Those who choose this path do so because they've understood this. Because they are ahead. Because those who truly achieve more don't wait — they decide.", m6:"They decide they want Excellence and Clarity. Confidence and charisma. Authentic leadership — that respects above all yourself, your true values, your true Self. A lifestyle that unites results and wellbeing for you and those around you.", ctaLabel:"Selective process - Limited spots", ctaTitle:"Book your free Exclusive Clarity Call", ctaDesc:"Reserved exclusively for those selected through this quiz. Not for everyone. Limited spots. Selection in progress.", ctaBtn:"BOOK NOW - IT'S FREE", ctaConf:"You will receive confirmation by email with all details.", diag:"Your personalised diagnosis", retry:"Retake the test" }
+};
+
+function setLang(l) {
+  lang = l;
+  document.getElementById('btn-it').className = 'btn-lang' + (l==='it'?' on':'');
+  document.getElementById('btn-en').className = 'btn-lang' + (l==='en'?' on':'');
+  updateIntroText();
+  if (document.getElementById('screen-quiz').style.display !== 'none' && !document.getElementById('screen-quiz').classList.contains('hidden')) {
+    renderQuestion();
+  }
+}
+
+function updateIntroText() {
+  var t = T[lang];
+  document.getElementById('intro-role').textContent = lang==='it'?'Fondatrice - Quantum Hypnosis':'Founder - Quantum Hypnosis';
+  document.getElementById('intro-sub').textContent = lang==='it'?"25+ anni - Leader internazionali - Atleti d'elite":"25+ years - International leaders - Elite athletes";
+  document.getElementById('intro-subtitle').textContent = lang==='it'?'Test di Autovalutazione Elite':'Elite Self-Assessment';
+  document.getElementById('intro-desc').textContent = lang==='it'?"Scopri esattamente dove si trova la tua mente, le tue relazioni e il tuo potenziale in questo momento - e cosa ti impedisce di operare al livello che ti appartiene.":"Discover exactly where your mind, relationships and potential stand right now - and what is keeping you from operating at the level you deserve.";
+  document.getElementById('intro-exc').textContent = lang==='it'?"Questo test non e' per tutti. E' per chi e' pronto a fare sul serio.":"This test is not for everyone. It's for those ready to get serious.";
+  document.getElementById('stat1').textContent = lang==='it'?'leader trasformati':'leaders transformed';
+  document.getElementById('stat2').textContent = lang==='it'?'anni di ricerca':'years research';
+  document.getElementById('stat3').textContent = lang==='it'?'continenti':'continents';
+  document.getElementById('btn-start').textContent = t.start;
+  document.getElementById('intro-duration').textContent = lang==='it'?'4 minuti - 10 domande - Diagnosi AI personalizzata':'4 minutes - 10 questions - Personalised AI diagnosis';
+}
+
+function show(id) {
+  ['screen-intro','screen-quiz','screen-lead','screen-loading','screen-result'].forEach(function(s){
+    var el = document.getElementById(s);
+    el.classList.add('hidden');
+    el.style.display = 'none';
+  });
+  var el = document.getElementById(id);
+  el.classList.remove('hidden');
+  el.style.display = '';
+  el.classList.remove('fade-in');
+  void el.offsetWidth;
+  el.classList.add('fade-in');
+  window.scrollTo(0,0);
+}
+
+function startQuiz() {
+  current = 0; answers = {}; sliderValue = 5; choiceValue = null;
+  show('screen-quiz');
+  renderQuestion();
+}
+
+function updateSlider(v) {
+  sliderValue = parseInt(v);
+  document.getElementById('slider-val').textContent = v;
+  var pct = (v-1)/9*100;
+  document.getElementById('slider-input').style.background = 'linear-gradient(to right,#B8952A 0%,#B8952A '+pct+'%,rgba(255,255,255,0.15) '+pct+'%,rgba(255,255,255,0.15) 100%)';
+}
+
+function renderQuestion() {
+  var q = QUESTIONS[current];
+  var t = T[lang];
+  var pct = Math.round((current+1)/QUESTIONS.length*100);
+  document.getElementById('q-counter').textContent = t.question+' '+(current+1)+' / '+QUESTIONS.length;
+  document.getElementById('q-pct').textContent = pct+'%';
+  document.getElementById('progress-fill').style.width = pct+'%';
+  document.getElementById('q-text').textContent = q[lang];
+  document.getElementById('btn-back').textContent = current>0?t.back:'';
+  document.getElementById('btn-next').textContent = current<QUESTIONS.length-1?t.next:t.cont;
+  document.getElementById('btn-next').disabled = false;
+
+  if (q.type==='slider') {
+    document.getElementById('q-slider').classList.remove('hidden');
+    document.getElementById('q-slider').style.display = 'block';
+    document.getElementById('q-choices').innerHTML = '';
+    document.getElementById('slider-input').value = sliderValue;
+    document.getElementById('slider-val').textContent = sliderValue;
+    document.getElementById('slider-low').textContent = q.labelLow[lang];
+    document.getElementById('slider-high').textContent = q.labelHigh[lang];
+    updateSlider(sliderValue);
+  } else {
+    document.getElementById('q-slider').classList.add('hidden');
+    document.getElementById('q-slider').style.display = 'none';
+    choiceValue = null;
+    document.getElementById('btn-next').disabled = true;
+    var html = '';
+    q.options.forEach(function(opt, i) {
+      html += '<button class="choice-btn" onclick="selectChoice(\''+opt[lang].replace(/'/g,"\\'")+'\')" id="choice-'+i+'"><span style="color:#B8952A;margin-right:9px;font-size:10.5px;opacity:0.6">'+String.fromCharCode(65+i)+'.</span>'+opt[lang]+'</button>';
+    });
+    document.getElementById('q-choices').innerHTML = html;
+  }
+}
+
+function selectChoice(val) {
+  choiceValue = val;
+  var q = QUESTIONS[current];
+  q.options.forEach(function(opt, i) {
+    var btn = document.getElementById('choice-'+i);
+    if (btn) btn.className = 'choice-btn' + (opt[lang]===val?' sel':'');
+  });
+  document.getElementById('btn-next').disabled = false;
+}
+
+function goNext() {
+  var q = QUESTIONS[current];
+  var val = q.type==='slider' ? sliderValue : choiceValue;
+  if (q.type==='choice' && !val) return;
+  answers[q.key] = val;
+  if (current < QUESTIONS.length-1) {
+    current++;
+    sliderValue = 5;
+    choiceValue = null;
+    renderQuestion();
+  } else {
+    showLead();
+  }
+}
+
+function goBack() {
+  if (current>0) { current--; sliderValue=5; choiceValue=null; renderQuestion(); }
+}
+
+function showLead() {
+  var t = T[lang];
+  document.getElementById('lead-step').textContent = t.lastStep;
+  document.getElementById('lead-title').textContent = t.leadTitle;
+  document.getElementById('lead-desc').textContent = t.leadDesc;
+  document.getElementById('lead-btn').textContent = t.leadBtn;
+  document.getElementById('lead-privacy').textContent = t.privacy;
+  document.getElementById('f-name').placeholder = lang==='it'?'Nome e Cognome':'Full Name';
+  document.getElementById('f-phone').placeholder = lang==='it'?'WhatsApp (es. +39 333 1234567)':'WhatsApp (e.g. +34 600 123456)';
+  document.getElementById('f-age').placeholder = lang==='it'?"Eta' (es. 42)":'Age (e.g. 42)';
+  document.getElementById('f-profession').placeholder = lang==='it'?'Professione / Ruolo':'Profession / Role';
+  show('screen-lead');
+}
+
+function submitLead() {
+  var name = document.getElementById('f-name').value.trim();
+  var email = document.getElementById('f-email').value.trim();
+  var phone = document.getElementById('f-phone').value.trim();
+  var age = document.getElementById('f-age').value.trim();
+  var profession = document.getElementById('f-profession').value.trim();
+  var errEl = document.getElementById('lead-err');
+  if (!name||!email||!phone||!age||!profession) {
+    errEl.textContent = lang==='it'?'Compila tutti i campi.':'Fill all fields.';
+    errEl.style.display = 'block'; return;
+  }
+  if (!/\S+@\S+\.\S+/.test(email)) {
+    errEl.textContent = lang==='it'?'Email non valida.':'Invalid email.';
+    errEl.style.display = 'block'; return;
+  }
+  errEl.style.display = 'none';
+  leadData = {name:name, email:email, phone:phone, age:age, profession:profession};
+  runAnalysis();
+}
+
+function assignFallback() {
+  var stress = answers.stress||5;
+  var area = answers.area||'';
+  var obstacle = answers.obstacle||'';
+  var relationships = answers.relationships||'';
+  var experience = answers.experience||'';
+  var underperformance = answers.underperformance||5;
+  var subconscious = answers.subconscious||5;
+  var scores = {burnout:0,cristallo:0,silenzio:0,chiave:0,bussola:0};
+  if (area.indexOf('Stato mentale')>-1||area.indexOf('Mental state')>-1) scores.burnout+=3;
+  if (area.indexOf('Performance')>-1||area.indexOf('Business')>-1) scores.cristallo+=3;
+  if (area.indexOf('Relazioni')>-1||area.indexOf('Relationships')>-1) scores.silenzio+=3;
+  if (area.indexOf('Identit')>-1||area.indexOf('Identity')>-1||area.indexOf('Direction')>-1||area.indexOf('Direzione')>-1) scores.bussola+=3;
+  if (stress>=8) scores.burnout+=2; else if (stress>=6) scores.burnout+=1; else if (stress<=4){scores.cristallo+=1;scores.bussola+=1;}
+  if (obstacle.indexOf('Autosabotaggio')>-1||obstacle.indexOf('Self-sabotage')>-1) scores.cristallo+=2;
+  if (obstacle.indexOf('Relazioni')>-1||obstacle.indexOf('Toxic')>-1) scores.silenzio+=2;
+  if (obstacle.indexOf('Stress')>-1) scores.burnout+=2;
+  if (obstacle.indexOf('Decisioni')>-1||obstacle.indexOf('decisions')>-1) scores.bussola+=2;
+  if (relationships.indexOf('Solo')>-1||relationships.indexOf('Lonely')>-1) scores.silenzio+=2;
+  if (relationships.indexOf('Conflitto')>-1||relationships.indexOf('conflict')>-1) scores.silenzio+=1;
+  if (relationships.indexOf('Distante')>-1||relationships.indexOf('Distant')>-1){scores.burnout+=1;scores.silenzio+=1;}
+  if (experience.indexOf('buoni risultati')>-1||experience.indexOf('good results')>-1){scores.chiave+=4;scores.cristallo-=2;}
+  if (experience.indexOf('niente ha funzionato')>-1||experience.indexOf('nothing really')>-1) scores.chiave+=4;
+  if (experience.indexOf('prima volta')>-1||experience.indexOf('first time')>-1){scores.bussola+=1;scores.burnout+=1;}
+  if (underperformance>=7) scores.cristallo+=2; else if (underperformance>=5) scores.cristallo+=1;
+  if (subconscious>=7){scores.cristallo+=1;scores.chiave+=1;}
+  var hasDoneWork = experience.indexOf('buoni risultati')>-1||experience.indexOf('good results')>-1||experience.indexOf('niente ha funzionato')>-1||experience.indexOf('nothing really')>-1;
+  if (hasDoneWork&&scores.chiave>=4) return 'chiave';
+  var winner='burnout',max=0;
+  for (var k in scores){if(scores[k]>max){max=scores[k];winner=k;}}
+  return winner;
+}
+
+function runAnalysis() {
+  var t = T[lang];
+  document.getElementById('loading-title').textContent = t.loading+'...';
+  document.getElementById('loading-desc').textContent = t.loadingDesc;
+  show('screen-loading');
+  var summary = QUESTIONS.map(function(q){return q.key+': '+(answers[q.key]||'N/A');}).join('\n');
+  var outLang = lang==='it'?'italiano':'English';
+  var profileKeys = Object.keys(PROFILES[lang]).join(', ');
+  var systemPrompt = 'You are an AI assistant for Quantum Hypnosis by Marina Ferrara. Analyze self-assessment data and respond ONLY with a raw JSON object, no markdown, no text before or after. Start with { end with }. Fields: profile_key (one of: '+profileKeys+'), diagnosis (2-3 sentences in '+outLang+', personal and precise).';
+  var userMsg = 'Data:\n'+summary+'\nName: '+(leadData?leadData.name:'');
+  var controller = new AbortController();
+  var timeout = setTimeout(function(){controller.abort();},15000);
+  fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST', signal:controller.signal,
+    headers:{'Content-Type':'application/json','anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+    body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:600,system:systemPrompt,messages:[{role:'user',content:userMsg}]})
+  }).then(function(res){
+    clearTimeout(timeout);
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    return res.json();
+  }).then(function(data){
+    var text = (data&&data.content&&data.content[0]&&data.content[0].text)||'';
+    var m = text.match(/\{[\s\S]*\}/);
+    if(m){
+      try{
+        var parsed = JSON.parse(m[0]);
+        if(parsed.profile_key&&PROFILES[lang][parsed.profile_key]){
+          resultData = parsed; showResult(); return;
+        }
+      }catch(e){}
+    }
+    resultData = {profile_key:assignFallback(),diagnosis:''}; showResult();
+  }).catch(function(){
+    clearTimeout(timeout);
+    resultData = {profile_key:assignFallback(),diagnosis:''}; showResult();
+  });
+}
+
+function showResult() {
+  var t = T[lang];
+  var profile = PROFILES[lang][resultData.profile_key];
+  var tlist = TESTIMONIALS[lang];
+  var waMsg = encodeURIComponent('[QTTEST]\nNome: '+(leadData?leadData.name:'')+'\nEta: '+(leadData?leadData.age:'')+'\nProfessione: '+(leadData?leadData.profession:'')+'\nEmail: '+(leadData?leadData.email:'')+'\nWhatsApp: '+(leadData?leadData.phone:'')+'\nFascia: '+(answers.investment||'')+'\nProfilo: '+resultData.profile_key+'\n\n'+(lang==='it'?'Vorrei candidarmi per la Exclusive Clarity Call.':"I'd like to apply for the Exclusive Clarity Call."));
+  var waLink = 'https://wa.me/34611326234?text='+waMsg;
+
+  var descParas = profile.description.split('\n\n').map(function(p){
+    return '<p style="font-family:\'Cormorant Garamond\',serif;font-size:19px;line-height:1.75;font-style:italic;color:rgba(255,255,255,0.92);margin-bottom:16px">'+p+'</p>';
+  }).join('');
+
+  var diagHtml = resultData.diagnosis ? '<div style="background:rgba(184,149,42,0.08);border:1px solid rgba(184,149,42,0.25);border-radius:8px;padding:18px 20px;margin-bottom:32px"><div style="font-size:10px;letter-spacing:0.15em;color:#B8952A;text-transform:uppercase;margin-bottom:10px">'+t.diag+'</div><p style="font-size:16px;line-height:1.75;color:rgba(255,255,255,0.88);margin:0;font-weight:300">'+resultData.diagnosis+'</p></div>' : '';
+
+  var testimHtml = tlist.map(function(te){
+    return '<div class="t-card"><div style="font-family:\'Cormorant Garamond\',serif;font-size:20px;font-style:italic;color:#B8952A;margin-bottom:12px;line-height:1.3">'+te.headline+'</div><p style="font-size:15px;line-height:1.8;color:rgba(255,255,255,0.72);font-weight:300;margin-bottom:14px">"'+te.quote+'"</p><div style="font-size:13px;color:#B8952A;font-weight:600">— '+te.name+'</div><div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:3px">'+te.role+'</div></div>';
+  }).join('');
+
+  var firstName = leadData?leadData.name.split(' ')[0]:'';
+  var profileLabel = firstName?(t.yourProfile+', '+firstName):t.yourProfile;
+
+  var html = '<div style="text-align:center;margin-bottom:32px;padding:28px 20px;background:rgba(184,149,42,0.06);border:1px solid rgba(184,149,42,0.2);border-radius:12px">'+
+    '<div style="font-size:44px;margin-bottom:12px">'+profile.emoji+'</div>'+
+    '<div style="font-family:\'Cormorant Garamond\',serif;font-size:11px;letter-spacing:0.2em;color:#B8952A;text-transform:uppercase;margin-bottom:10px">'+profileLabel+'</div>'+
+    '<h2 style="font-family:\'Cormorant Garamond\',serif;font-size:34px;font-weight:400;line-height:1.2;color:#fff">'+profile.name+'</h2>'+
+  '</div>'+
+  '<div style="border-left:4px solid #B8952A;padding-left:20px;margin-bottom:32px">'+descParas+'</div>'+
+  diagHtml+
+  '<div class="divider"></div>'+
+  '<div style="margin-bottom:36px">'+
+    '<div style="text-align:center;margin-bottom:28px">'+
+      '<div style="font-family:\'Cormorant Garamond\',serif;font-size:42px;color:#B8952A;font-weight:300;line-height:1.1;margin-bottom:6px">'+t.days+'</div>'+
+      '<div style="font-family:\'Cormorant Garamond\',serif;font-size:18px;color:rgba(255,255,255,0.45);font-style:italic">'+t.daysub+'</div>'+
+    '</div>'+
+    '<p style="font-size:17px;line-height:1.9;color:rgba(255,255,255,0.78);font-weight:300;margin-bottom:18px">'+t.t1+'</p>'+
+    '<p style="font-size:17px;line-height:1.9;color:rgba(255,255,255,0.78);font-weight:300">'+t.t2+'</p>'+
+  '</div>'+
+  '<div class="divider"></div>'+
+  '<div style="margin-bottom:36px">'+
+    '<div style="text-align:center;margin-bottom:24px">'+
+      '<div style="font-family:\'Cormorant Garamond\',serif;font-size:13px;letter-spacing:0.16em;color:#B8952A;text-transform:uppercase;margin-bottom:10px">'+t.testimLabel+'</div>'+
+      '<div style="font-family:\'Cormorant Garamond\',serif;font-size:24px;color:#fff;font-weight:300;line-height:1.3">'+t.testimSub+'</div>'+
+    '</div>'+testimHtml+
+  '</div>'+
+  '<div class="divider"></div>'+
+  '<div style="margin-bottom:36px">'+
+    '<div style="text-align:center;margin-bottom:32px;padding:24px 16px">'+
+      '<div style="font-family:\'Cormorant Garamond\',serif;font-size:30px;color:#B8952A;font-weight:400;line-height:1.3;font-style:italic">'+t.quote1+'</div>'+
+    '</div>'+
+    '<p style="font-size:17px;line-height:1.9;color:rgba(255,255,255,0.78);font-weight:300;margin-bottom:20px">'+t.m1+'</p>'+
+    '<p style="font-size:17px;line-height:1.9;color:rgba(255,255,255,0.78);font-weight:300;margin-bottom:20px">'+t.m2+'</p>'+
+    '<div style="text-align:center;padding:20px 16px;margin-bottom:20px">'+
+      '<div style="font-family:\'Cormorant Garamond\',serif;font-size:22px;color:#B8952A;font-weight:400;font-style:italic;line-height:1.4">'+t.quote2+'</div>'+
+    '</div>'+
+    '<p style="font-size:17px;line-height:1.9;color:rgba(255,255,255,0.78);font-weight:300;margin-bottom:28px">'+t.m3+'</p>'+
+    '<div style="background:rgba(184,149,42,0.07);border:1px solid rgba(184,149,42,0.2);border-radius:10px;padding:24px 22px;margin-bottom:20px">'+
+      '<p style="font-size:18px;line-height:1.85;color:rgba(255,255,255,0.9);font-weight:300;margin:0 0 14px 0">'+t.m4+'</p>'+
+      '<p style="font-size:18px;line-height:1.85;color:rgba(255,255,255,0.9);font-weight:300;margin:0">'+t.m5+'</p>'+
+    '</div>'+
+    '<div style="padding:20px 16px">'+
+      '<p style="font-family:\'Cormorant Garamond\',serif;font-size:20px;line-height:1.85;color:rgba(255,255,255,0.88);font-style:italic;margin:0">'+t.m6+'</p>'+
+    '</div>'+
+  '</div>'+
+  '<div class="divider"></div>'+
+  '<div style="background:rgba(184,149,42,0.07);border:1px solid rgba(184,149,42,0.25);border-radius:12px;padding:28px 24px;text-align:center;margin-bottom:28px">'+
+    '<div style="font-family:\'Cormorant Garamond\',serif;font-size:11px;letter-spacing:0.2em;color:#B8952A;text-transform:uppercase;margin-bottom:12px">'+t.ctaLabel+'</div>'+
+    '<h3 style="font-family:\'Cormorant Garamond\',serif;font-size:26px;font-weight:300;margin-bottom:14px;line-height:1.3;color:#fff">'+t.ctaTitle+'</h3>'+
+    '<p style="font-size:15px;color:rgba(255,255,255,0.55);margin-bottom:28px;line-height:1.75;font-style:italic">'+t.ctaDesc+'</p>'+
+    '<a href="https://cal.eu/marina-ferrara-qnimw4/30min" target="_blank" class="btn-gold" style="margin-bottom:14px">'+t.ctaBtn+'</a>'+
+    '<p style="font-size:12px;color:rgba(255,255,255,0.3);margin-top:14px;line-height:1.6">'+t.ctaConf+'</p>'+
+  '</div>'+
+  '<div style="text-align:center;margin-top:16px">'+
+    '<button onclick="restart()" style="background:none;border:none;color:rgba(255,255,255,0.18);font-size:12px;cursor:pointer;letter-spacing:0.05em;font-family:\'Montserrat\',sans-serif">'+t.retry+'</button>'+
+  '</div>'+
+  '<div style="text-align:center;margin-top:24px;font-size:10px;color:rgba(255,255,255,0.12);letter-spacing:0.1em;text-transform:uppercase;line-height:1.8;margin-bottom:20px">QUANTUM HYPNOSIS - MARINA FERRARA<br/>ELITE HIGH PERFORMANCE PROTOCOL FOR LEADERS</div>';
+
+  document.getElementById('screen-result').innerHTML = html;
+  show('screen-result');
+}
+
+function restart() {
+  current=0; answers={}; sliderValue=5; choiceValue=null; leadData=null; resultData=null;
+  show('screen-intro');
+}
+</script>
+</body>
+</html>
